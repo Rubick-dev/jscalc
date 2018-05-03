@@ -1,0 +1,115 @@
+
+/* CSS GRID */
+.wrapper {
+  border: 3px solid black;
+  font-family: 'Russo One', sans-serif;
+  height: 100%;
+  max-width: 500px;
+  margin: auto;
+  margin-top: 80px;
+  padding: 20px;
+  display: grid;
+  grid-gap: 5px;
+  grid-template: repeat(7, 1fr) / repeat(4, 1fr);
+  grid-template-areas:
+    "h h h h"  /* header */
+    "t t t t"  /* text area */
+    "c c x d"  /* clear Multiply divide */
+    "v e n s"  /* 7 8 9 subtract */
+    "f i k a"  /* 4 5 6 add */
+    "o w r q"  /* 1 2 3 = */
+    "z z p q"; /* 0 0 . = */
+}
+
+.header {
+  grid-area: h;
+}
+
+.textarea {
+  grid-area: t;
+}
+
+.clear {
+  grid-area: c;
+}
+
+.multiply {
+  grid-area: x;
+}
+
+.divide {
+  grid-area: d;
+}
+
+.seven {
+  grid-area: v;
+}
+
+.eight {
+  grid-area: e;
+}
+
+.nine {
+  grid-area: n;
+}
+
+.subtract {
+  grid-area: s;
+}
+
+.four {
+  grid-area: f;
+}
+
+.five {
+  grid-area: i;
+}
+
+.six {
+  grid-area: k;
+}
+
+.add {
+  grid-area: a;
+}
+
+.one {
+  grid-area: o;
+}
+
+.two {
+  grid-area: w;
+}
+
+.three {
+  grid-area: r;
+}
+
+.equals {
+  grid-area: q;
+}
+
+.zero {
+  grid-area: z;
+}
+
+.point {
+  grid-area: p;
+}
+
+/* End of CSS grid specific */
+
+.wrapper > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+#clearButton,
+.display_area {
+  width: 100%;
+  height: 100%;
+}
