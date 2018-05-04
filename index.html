@@ -13,43 +13,77 @@
   <div class="wrapper"> <!-- Calculator wrapper container -->
     
     <!-- ROW 1 - (Heading) -->
-    <div id="" class="header">
+    <div id="heading" class="header">
       <h3>JavaScript Calculator</h3>
     </div>
 
     <!-- ROW 2 - (Display Area) -->
     <div id="display" class="textarea">
-      <textarea class="display_area" placeholder="Display area"></textarea>
+      <div class="display_area" id="display2">
+        <P id="result" class="result_display_paragraph">0</P>
+      </div>
     </div>
 
     <!-- ROW 3 - (Clear / Multiply / Divide) -->
     <div id="clear" class="clear">
-      <button id="clearButton">Clear</button>
+      <button id="clear-button" class="button clear-button">Clear</button>
     </div>
-    <div id="multiply" class="multiply">X</div>
-    <div id="divide" class="divide">/</div>
+    <div id="multiply" class="multiply">
+      <button id="multiply-button" class="button">X</button>
+    </div>
+    <div id="divide" class="divide">
+      <button id="divide-button" class="button">&divide;</button>
+     </div>
     
     <!-- ROW 4 - (7 / 8 / 9 / Subtract) -->
-    <div id="seven" class="seven">7</div>
-    <div id="eight" class="eight">8</div>
-    <div id="nine" class="nine">9</div>
-    <div id "subtract" class="subtract">-</div>
+    <div id="seven" class="seven">
+      <button id="seven-button" class="button">7</button>
+    </div>
+    <div id="eight" class="eight">
+      <button id="eight-button" class="button">8</button>
+    </div>
+    <div id="nine" class="nine">
+      <button id="nine-button" class="button">9</button>
+    </div>
+    <div id "subtract" class="subtract">
+      <button id="minus-button" class="button">-</button>
+    </div>
 
     <!-- ROW 5 - (4 / 5 / 6 / Add) -->
-    <div id="four" class="four">4</div>
-    <div id="five" class="five">5</div>
-    <div id="six" class="six">6</div>
-    <div id="add" class="add">+</div>
+    <div id="four" class="four">
+      <button id="four-button" class="button">4</button>
+    </div>
+    <div id="five" class="five">
+      <button id="five-button" class="button">5</button>
+    </div>
+    <div id="six" class="six">
+      <button id="six-button" class="button">6</button>
+    </div>
+    <div id="add" class="add">
+      <button id="addition-button" class="button">+</button>
+    </div>
 
     <!-- ROW 6 - (1 / 2 / 3 / Equals(1/2)) -->
-    <div id="one" class="one">1</div>
-    <div id="two" class="two">2</div>
-    <div id="three" class="three">3</div>
-    <div id="equals" class="equals">=</div>
+    <div id="one" class="one">
+      <button id="one-button" class="button">1</button>
+    </div>
+    <div id="two" class="two">
+      <button id="two-button" class="button">2</button>
+    </div>
+    <div id="three" class="three">
+      <button id="two-button" class="button">2</button>
+    </div>
+    <div id="equals" class="equals">
+      <button id="equals-button" class="button">=</button>
+    </div>
 
     <!-- ROW 7 - (0 / Point / Equals(2/2)) -->
-    <div id="zero" class="zero">0</div>
-    <div id="dot" class="point">.</div>
+    <div id="zero" class="zero">
+      <button id="zero-button" class="button">0</button>
+    </div>
+    <div id="dot" class="point">
+      <button id="point-button" class="button">.</button>
+    </div>
     
   </div> <!-- End of calculator wrapper container-->
   
