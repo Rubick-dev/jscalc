@@ -119,11 +119,35 @@ body {
   background: rgb(240, 237, 237);
   border-radius: 10px;
   box-shadow: inset 0px 0px 20px #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   font-size: 2.5rem;
+  padding-right: 20px;
+  display: grid;
+  grid-template-columns: 150px 330px;
+  grid-template-rows: 60px;
+  justify-content: space-between;
+}
+
+#result {
+  max-width: 100%;
+  margin: 0;
+  width: 400px;
+  overflow: hidden;
+  justify-self: right;
+  text-align: end;
+  line-height: 60px;
+  
+}
+
+#miniResult {
+  max-width: 100%;
+  font-size: .7rem;
+  opacity: 0.6;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0;
+  align-items: end;
+  line-height: 80px;
+  overflow: hidden;
 }
 
 .button {
@@ -144,15 +168,4 @@ body {
 
 #clear-button {
   background: rgb(245, 132, 132);
-}
-
-#result {
-  margin: 0;
-  width: 400px;
-  text-align: right;
-  overflow: hidden;
-}
-
-#miniResult {
-  font-size: .8rem;
 }
