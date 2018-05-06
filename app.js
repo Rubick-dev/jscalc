@@ -1,12 +1,10 @@
-// Variables
 var calcArray = []; //Array used to store the numerals pressed on the calc
 var val = null; // the value of the current total
 var val2 = 0; // the value of the user defined value to be calculated with val
 var display = 0; // to display the main calc value
-var display2; //
-var buttons = document.querySelector('#wrapper'); //store the clcik event variable
-var prevOp; // to remember the previous op for calculation on chained calcs
-
+const buttons = document.querySelector('#wrapper'); //store the clcik event variable
+var prevOp = null; // to remember the previous op for calculation on chained calcs
+var buttonEnabled = true; // Switch between button enabled and disabled
 // Event Listener to trigger a switch statement and fire the appropriate function logic.
 buttons.addEventListener("click", calculate, false);
 
@@ -62,49 +60,55 @@ function resetDisplay() {
   display = 0;
   calcArray = [];
   val = null;
+  prevOp = null;
+  buttonEnabled = true;
   document.getElementById("result").innerHTML = display;
   document.getElementById("miniResult").innerHTML = "";
-  
 };
 
 
 // Numbers [0 - 9] button function
 function showNumbers(num){
-  calcArray.push(num);
-  console.log(calcArray);
-  if (calcArray.length > 12){
-    display = "Max 12 Digits";
-    document.getElementById("result").innerHTML = display;
-    calcArray = [];
-  } else if (calcArray.length == 2 && calcArray[0] == 0 && calcArray[1] == 0) {
-    console.log(calcArray.length + " test a " + calcArray[0]);
-    calcArray.pop();
-    console.log("Removing the duplicate 0's at the start of calc array, only 1 permitted")
-  } else if (calcArray[0] == 0 && calcArray.length > 1 && calcArray[1] != "."){
-    calcArray.shift();
-    display = calcArray.join("");
-    console.log(calcArray.join(''));
-    document.getElementById("result").innerHTML = display;
-  } else {
-    display = calcArray.join("");
-    console.log(calcArray.join(''));
-    document.getElementById("result").innerHTML = display;
+ if (buttonEnabled) {
+    calcArray.push(num);
+    console.log(calcArray + " is the current calc array");
+    if (calcArray.length > 12){
+      display = "Max 12 Digits";
+      document.getElementById("result").innerHTML = display;
+      calcArray = [];
+      val = null;
+    } else if (calcArray.length == 2 && calcArray[0] == 0 && calcArray[1] == 0) {
+      console.log(calcArray.length + " test a " + calcArray[0]);
+      calcArray.pop();
+      console.log("Removing the duplicate 0's at the start of calc array, only 1 permitted")
+    } else if (calcArray[0] == 0 && calcArray.length > 1 && calcArray[1] != "."){
+      calcArray.shift();
+      display = calcArray.join("");
+      console.log(calcArray.join('') + " dealing with adding numbers with decimals");
+      document.getElementById("result").innerHTML = display;
+    } else {
+      display = calcArray.join("");
+      console.log(calcArray.join('') + " adding number to calcArray");
+      document.getElementById("result").innerHTML = display;
+    }
   }
 };
 
 // Point "." button function
 function insertPoint(point) {
-  // console.log(calcArray.indexOf("."));
-  if(calcArray.indexOf(".") == -1) {
+  if (buttonEnabled) {
+    if(calcArray.indexOf(".") == -1) {
     calcArray.push(point);
     display = calcArray.join("");
     document.getElementById("result").innerHTML = display;
-    console.log(calcArray.join(''));
+    console.log(calcArray.join('') + " added a point to array");
+    }
   }
 };
 
 // Run Arithmatic logic upon arithmatic operatror button press
 function runFraction(op){
+  buttonEnabled = true;
   if (val === null && calcArray.length > 0) {
     val = calcArray.join('');
     calcArray = [];
@@ -128,8 +132,10 @@ function runFraction(op){
     document.getElementById("result").innerHTML = display;
     val = conductArithmatic(prevOp);
     console.log("calculate now " + val + " " + op + " " + val2);
-    document.getElementById("miniResult").innerHTML = "(" + op + ") " + val;
-    prevOp = op;
+    if (val !== null) {
+      document.getElementById("miniResult").innerHTML = "(" + op + ") " + val;
+      prevOp = op;
+      }
     console.log("D if statement");
   }
 };
@@ -138,44 +144,68 @@ function runFraction(op){
 function conductArithmatic(op) {
   switch (op) {
     case "+":
-      let arithVal = (+val + +val2);
-      if (arithVal.toString().length > 12) {
-        displayError();
-        break;
+      let addVal = (+val + +val2);
+      if (addVal.toString().length > 12) {
+        return displayError();
       } else 
-      return arithVal;
+      return addVal;
 
     case "/":
-      return (+val / +val2);
+      let divVal = (+val / +val2);
+      if (divVal.toString().length > 12) {
+      return displayError();
+      } else 
+      return divVal;
 
     case "*":
-      return (+val * +val2);
+      let mulVal = (+val * +val2);
+      if (mulVal.toString().length > 12) {
+        return displayError();
+      } else 
+      return mulVal;
 
     case "-":
-      return (+val - +val2);
+      let minVal = (+val - +val2);
+      if (minVal.toString().length > 12) {
+        return displayError();
+      } else 
+      return minVal;
   }
 };
 
+
+// On pressing the = button
 function calculateResult(op) {
   if (val && calcArray.length > 0) {
     val2 = calcArray.join('');
+    console.log(val + " val1 <-- and val2 --> " + val2 + " being calculated now");
     display = conductArithmatic(prevOp);
-    document.getElementById("result").innerHTML = display;
-
-    calcArray = [];
-    val = display;
-    document.getElementById("miniResult").innerHTML = "";
-    console.log("= sign statement logic ha just run");
+    console.log(display + " this is the post arithmatic value after the equals button is pressed");
+    if (val !== null) {
+      document.getElementById("result").innerHTML = display;
+      document.getElementById("miniResult").innerHTML = "";
+      val = display;
+      calcArray = [];
+      display = 0;
+      val2 = 0;
+      prevOp = null;
+      document.getElementById("miniResult").innerHTML = "";
+      buttonEnabled = false;
+    } else {
+      console.log(" the value of val was null")
+    }
   }
-}
+  console.log("= sign button logic has just run");
+};
 
-
+// Displays the broken calculator error when numbers exceed limits
 function displayError(){
   display = "Calc Broke!";
   document.getElementById("result").innerHTML = display;
   document.getElementById("miniResult").innerHTML = "";
   calcArray = [];
-  val = null;
   val2 = 0;
   display = 0;
-}
+  prevOp = null;
+  return val = null;
+};
