@@ -169,6 +169,18 @@ body {
   background: rgb(245, 132, 132);
 }
 
+.footer {
+  font-size: .8rem;
+  text-decoration: none;
+  font-style: italic;
+  text-align: center;
+  margin-top: 10px;
+}
+
+a:link {
+  text-decoration: none;
+}
+
 @media screen and (max-width:520px) {
   .display_area {
     width: 100%;
